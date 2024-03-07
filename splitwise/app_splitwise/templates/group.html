@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type='text/javascript'>
+        function addFields() {
+            // Generate a dynamic number of inputs
+            var number = document.getElementById("member").value;
+            // Get the element where the inputs will be added to
+            var container = document.getElementById("container");
+            // Remove every children it had before
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i = 0; i < number; i++) {
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("banda " + (i + 1)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "member" + i;
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form action="/groups" method="post">
+        {% csrf_token %}
+        <label for="group_name">group naam ki hove? </label>
+        <input type="text" name="group_name" id=""> <br>
+        <label for="member">Kitne Bande hai: (max. 10)</label>
+        <input type="text" id="member" name="member" value=""><br>
+        <a href="#" id="filldetails" onclick="addFields()">jodo Bande...</a> <br>
+        <div id="container"> </div><br>
+        <button>thik hai karte hai prabandh...</button>
+    </form>
+
+</body>
+
+</html>
